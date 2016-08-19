@@ -9,6 +9,18 @@ select
 			'Consúltame'
 		when P.vchCodPlan like 'MACM-PLAN20-2013' then
 			'Pre20' 
+		when P.vchCodPlan like 'BCD150200/20-D1114' or P.vchCodPlan like 'CD150200/020-D0814' or P.vchCodPlan like 'CD150200/20-D0116' then
+			'Domo'
+		when P.vchCodPlan like 'CP100200/20-P0116' or P.vchCodPlan like 'PROSALUD-VITAL-100' or P.vchCodPlan like 'PROSALUD-VITAL-100SM' or P.vchCodPlan like 'BCS100200/20-D1114' or P.vchCodPlan like 'BCS100200/30-D1114' or P.vchCodPlan like 'CS100200/030-D0814' then
+			'Protege 100'
+		when P.vchCodPlan like 'CP200200/20-P0116' or P.vchCodPlan like 'BCS200200/20-D1114' then
+			'Protege 200'
+		when P.vchCodPlan like 'CP300200/20-P0116' or P.vchCodPlan like 'BCS300200/20-D1114' or P.vchCodPlan like 'CS300200/020-D0814' then
+			'Protege 300'
+		when P.vchCodPlan like 'CP500200/20-P0116' or P.vchCodPlan like 'PROSALUD-VITAL-500' or P.vchCodPlan like 'BCS500200/20-D1114' or P.vchCodPlan like 'CS500200/020-D0814' then
+			'Protege 500'
+		else 
+			P.vchCodPlan
 	end
 	,SUM((RRA.mTotalNeto - RRA.mIVA)) as Importe
 	,SUM(RRA.mIVA) as Iva
@@ -26,14 +38,26 @@ from
 where 
 	RRA.dtFecFactura between '2012/01/01' and '2016/07/30'
 	and TR.tiTipoReclamo <> 11
-	and P.tiClasePlan = 4
+	and P.tiClasePlan in ('4','18')
 group by 
 	C.vchRazonSocial
-,case 
-	when P.vchCodPlan like 'MACM-ENFERBASICO13' or P.vchCodPlan like 'CPAM-ENFBAS-0106' or P.vchCodPlan like 'LEGO' or P.vchCodPlan like 'ENFERMEDADESBASICO' then
-		'Plan Accesso Médico'
-	when P.vchCodPlan like 'MACM-ENFBAS2-13' or P.vchCodPlan like 'CPAC-ENFBAS-0106' or P.vchCodPlan like 'COL-ENFBAS-2' then	
-		'Consúltame'
-	when P.vchCodPlan like 'MACM-PLAN20-2013' then
-		'Pre20' 
-end
+	,case 
+		when P.vchCodPlan like 'MACM-ENFERBASICO13' or P.vchCodPlan like 'CPAM-ENFBAS-0106' or P.vchCodPlan like 'LEGO' or P.vchCodPlan like 'ENFERMEDADESBASICO' then
+			'Plan Accesso Médico'
+		when P.vchCodPlan like 'MACM-ENFBAS2-13' or P.vchCodPlan like 'CPAC-ENFBAS-0106' or P.vchCodPlan like 'COL-ENFBAS-2' then	
+			'Consúltame'
+		when P.vchCodPlan like 'MACM-PLAN20-2013' then
+			'Pre20' 
+		when P.vchCodPlan like 'BCD150200/20-D1114' or P.vchCodPlan like 'CD150200/020-D0814' or P.vchCodPlan like 'CD150200/20-D0116' then
+			'Domo'
+		when P.vchCodPlan like 'CP100200/20-P0116' or P.vchCodPlan like 'PROSALUD-VITAL-100' or P.vchCodPlan like 'PROSALUD-VITAL-100SM' or P.vchCodPlan like 'BCS100200/20-D1114' or P.vchCodPlan like 'BCS100200/30-D1114' or P.vchCodPlan like 'CS100200/030-D0814' then
+			'Protege 100'
+		when P.vchCodPlan like 'CP200200/20-P0116' or P.vchCodPlan like 'BCS200200/20-D1114' then
+			'Protege 200'
+		when P.vchCodPlan like 'CP300200/20-P0116' or P.vchCodPlan like 'BCS300200/20-D1114' or P.vchCodPlan like 'CS300200/020-D0814' then
+			'Protege 300'
+		when P.vchCodPlan like 'CP500200/20-P0116' or P.vchCodPlan like 'PROSALUD-VITAL-500' or P.vchCodPlan like 'BCS500200/20-D1114' or P.vchCodPlan like 'CS500200/020-D0814' then
+			'Protege 500'
+		else 
+			P.vchCodPlan
+	end

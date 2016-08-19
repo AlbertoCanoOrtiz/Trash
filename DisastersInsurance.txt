@@ -1,5 +1,5 @@
 use 
-	SAI
+	SAI  
 select 
 	C.vchRazonSocial
 	,case 

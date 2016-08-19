@@ -12,8 +12,6 @@ select
 	,SUM(RRA.mIVA) as Iva
 	,SUM(RRA.mTotalNeto)
 from 
-
-
 	TranReclamo TR 
 	inner join RelReclamoAfiliado RRA on RRA.iCodReclamo = TR.iCodReclamo
 	inner join RelEstatusReclamo RER on RER.iCodReclamo =RRA.iCodReclamo and RER.iCodAfiliado = RRA.iCodAfiliado and RER.tiSecuencialAfi=RRA.tiSecuencialAfi
